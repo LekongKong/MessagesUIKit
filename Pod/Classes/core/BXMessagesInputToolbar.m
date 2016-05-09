@@ -7,6 +7,7 @@
 //
 
 #import "BXMessagesInputToolbar.h"
+#import "BXMessagesInputToolbarTextView.h"
 #import "UIView+BXMessagesKit.h"
 
 @interface BXMessagesInputToolbar()
@@ -197,7 +198,7 @@
 {
     item.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:item attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:leftView?leftView:self attribute:leftView?NSLayoutAttributeRight:NSLayoutAttributeLeft multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:item attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:leftView?leftView:self attribute:leftView?NSLayoutAttributeRight:NSLayoutAttributeLeft multiplier:1.0 constant:(!leftView && [item isKindOfClass:[BXMessagesInputToolbarTextView class]]) ? 10 : 0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:item attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]];
     
     if (item.flexibleWidth) {

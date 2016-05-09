@@ -45,7 +45,7 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
         [self initTextView];
         
         self.backgroundImage = [UIImage buk_imageNamed:@"buk-toolbar-whitebg"];
-        self.textViewInsets = UIEdgeInsetsMake(9, 10, 9, 10);
+        self.textViewInsets = UIEdgeInsetsMake(9, 3, 9, 3);
 
     }
     
@@ -59,7 +59,7 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
     
     self.background.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_background]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_background)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_background]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_background)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-6-[_background]-6-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_background)]];
 }
 
