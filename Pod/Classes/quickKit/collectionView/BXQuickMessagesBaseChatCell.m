@@ -139,7 +139,7 @@
     if (!_avatar) {
         _avatar = [[UIImageView alloc] init];
         _avatar.userInteractionEnabled = YES;
-        _avatar.contentMode = UIViewContentModeScaleAspectFit;
+        _avatar.contentMode = UIViewContentModeScaleAspectFill;
     }
     
     return _avatar;
