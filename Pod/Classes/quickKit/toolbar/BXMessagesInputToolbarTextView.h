@@ -23,6 +23,10 @@
 
 @property (strong, nonatomic, readonly) UITextView *textView;
 
+@property (strong, nonatomic, readonly) UILabel *placeholderLabel;
+
+@property (strong, nonatomic, readonly) UIImageView *placeholderIcon;
+
 @property (assign, nonatomic) NSInteger maxVisibleNumberOfLines;
 
 @property (assign, nonatomic) UIEdgeInsets textViewInsets;

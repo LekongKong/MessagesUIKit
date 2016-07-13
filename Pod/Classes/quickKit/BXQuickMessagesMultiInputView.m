@@ -75,6 +75,13 @@ typedef NS_ENUM(NSInteger, BXMessagesKeyboardExchangePlace) {
     self.isOnlyToolbar = !show;
 }
 
+#pragma mark - UITextViewDelegate -
+- (void)textViewDidChange:(UITextView *)textView
+{
+    self.textView.placeholderLabel.hidden = textView.text.length > 0;
+    self.textView.placeholderIcon.hidden = textView.text.length > 0;
+}
+
 #pragma mark - tool bar items
 
 - (BXMessagesInputToolbarButton *)audioButton

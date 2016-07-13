@@ -18,6 +18,10 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
 
 @property (strong, nonatomic) UITextView *textView;
 
+@property (strong, nonatomic) UILabel *placeholderLabel;
+
+@property (strong, nonatomic) UIImageView *placeholderIcon;
+
 @property (weak, nonatomic) NSLayoutConstraint *textViewLeftConstraint;
 @property (weak, nonatomic) NSLayoutConstraint *textViewRightConstraint;
 @property (weak, nonatomic) NSLayoutConstraint *textViewTopConstraint;
@@ -84,8 +88,18 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
 - (void)initTextView
 {
     [self addSubview:self.textView];
+    [self addSubview:self.placeholderIcon];
+    [self addSubview:self.placeholderLabel];
     
     self.textView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.placeholderLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.placeholderIcon.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.placeholderIcon setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [self.placeholderLabel setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[_placeholderIcon]-10-[_placeholderLabel]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_placeholderIcon, _placeholderLabel)]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.placeholderIcon attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.placeholderLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     
     self.textViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.textView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:self.textViewInsets.top];
     [self addConstraint:self.textViewTopConstraint];
@@ -117,6 +131,24 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
     }
     
     return _textView;
+}
+
+- (UILabel *)placeholderLabel
+{
+    if (_placeholderLabel == nil) {
+        _placeholderLabel = [[UILabel alloc] init];
+        _placeholderLabel.textColor = [UIColor lightGrayColor];
+        _placeholderLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _placeholderLabel;
+}
+
+- (UIImageView *)placeholderIcon
+{
+    if (_placeholderIcon == nil) {
+        _placeholderIcon = [[UIImageView alloc] init];
+    }
+    return _placeholderIcon;
 }
 
 - (void)setTextViewInsets:(UIEdgeInsets)textViewInsets
@@ -185,6 +217,8 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
 
         CGFloat offset = self.textView.contentSize.height - CGRectGetHeight(self.textView.bounds);
         self.textView.contentOffset = CGPointMake(0.0f, offset < 0? offset/2.0 : offset);
+        self.placeholderLabel.hidden = self.textView.text.length > 0;
+        self.placeholderIcon.hidden = self.textView.text.length > 0;
     }
 }
 
@@ -219,4 +253,5 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
     [self removeTextViewKVOObservers];
     [self removeTextViewEventObservers];
 }
+
 @end
