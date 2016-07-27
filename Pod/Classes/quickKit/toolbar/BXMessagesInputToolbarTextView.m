@@ -97,7 +97,9 @@ static const CGFloat kBXMessagesInputToolbarTextViewMinHeight = 44;
     [self.placeholderIcon setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [self.placeholderLabel setContentCompressionResistancePriority:UILayoutPriorityFittingSizeLevel forAxis:UILayoutConstraintAxisHorizontal];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-8-[_placeholderIcon]-10-[_placeholderLabel]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_placeholderIcon, _placeholderLabel)]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.placeholderIcon attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:8]];
+    self.placeholderLabelLeftConstraint = [NSLayoutConstraint constraintWithItem:self.placeholderLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeft multiplier:1.0 constant:40];
+    [self addConstraint:self.placeholderLabelLeftConstraint];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.placeholderIcon attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     [self addConstraint:[NSLayoutConstraint constraintWithItem:self.placeholderLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0]];
     

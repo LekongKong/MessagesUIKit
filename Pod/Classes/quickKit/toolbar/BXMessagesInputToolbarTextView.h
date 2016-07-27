@@ -31,4 +31,6 @@
 
 @property (assign, nonatomic) UIEdgeInsets textViewInsets;
 
+@property (strong, nonatomic) NSLayoutConstraint *placeholderLabelLeftConstraint;
+
 @end
