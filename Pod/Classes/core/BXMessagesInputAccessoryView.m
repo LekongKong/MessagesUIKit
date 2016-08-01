@@ -11,8 +11,6 @@
 
 @interface BXMessagesInputAccessoryView()
 
-@property (strong, nonatomic) NSMutableArray *displayingItems;
-
 @property (strong, nonatomic) UIView<BXMessagesInputAccessoryItem> *maxHeightItem;
 
 @property (weak, nonatomic) NSLayoutConstraint *heightConstraint;

@@ -25,6 +25,8 @@
 
 @interface BXMessagesInputAccessoryView : UIView
 
+@property (strong, nonatomic) NSMutableArray *displayingItems;
+
 - (void)displayAccessoryItem:(UIView<BXMessagesInputAccessoryItem> *)item
                     animated:(BOOL)animated;
 

@@ -159,12 +159,12 @@ typedef NS_ENUM(NSInteger, BXMessagesKeyboardExchangePlace) {
     
     if ([self.textView.textView isFirstResponder]) {
         [self showAccessoryView:YES animated:NO];
+        [self.accessoryView displayAccessoryItem:self.inputStickerView animated:YES];
         [self.textView.textView resignFirstResponder];
     }else {
         [self showAccessoryView:YES animated:YES];
+        [self.accessoryView displayAccessoryItem:self.inputStickerView animated:YES];
     }
-    
-    [self.accessoryView displayAccessoryItem:self.inputStickerView animated:YES];
 }
 
 - (BXMessagesInputToolbarButton *)accessoryButton
