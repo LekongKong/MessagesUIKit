@@ -44,7 +44,6 @@ typedef NS_ENUM(NSInteger, BXMessagesKeyboardExchangePlace) {
 - (void)setupInputToolbarItems
 {
     self.keyboardButtonPlace = BXMessagesKeyboardExchangePlace_None;
-    
     [self.inputToolbar addToolbarItem:self.audioButton];
     [self.inputToolbar addToolbarItem:self.textView];
     [self.inputToolbar addToolbarItem:self.emojiButton];
